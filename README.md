@@ -23,3 +23,7 @@ What is my code doing that causes this problem?
 I've added event handlers for `uncaughtException` and `unhandledRejection` on the `process` object and these don't get triggered!
 
 If you can help please email me on [ashley@codecapers.com.au](mailto:ashley@codecapers.com.au) or tweet me [ashleydavis75](https://twitter.com/ashleydavis75).
+
+## Operating system / Node.js version
+
+This code has been tested on Windows 10 with Node.js versions 8.9.4, 10.15.2 and 12.6.0. It has the same behaviour on all versions tested.
