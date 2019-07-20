@@ -1,0 +1,16 @@
+{
+    "name": "broken-await-promise-example_nodejs_export",
+    "version": "1.0.0",
+    "description": "Data-Forge Notebook - A JavaScript notebook",
+    "main": "index.js",
+    "scripts": {
+        "start": "babel-node src/index.js",
+        "build": "babel src --out-dir dist"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.5.5",
+        "@babel/core": "^7.5.4",
+        "@babel/node": "^7.5.5",
+        "@babel/preset-env": "^7.5.4"
+    }
+}
