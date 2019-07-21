@@ -59,7 +59,7 @@ class AsyncTracker {
     }
 
     //
-    // Remove an async operatin.
+    // Remove an async operation.
     //
     addAsyncOperation(asyncId, type) {
         if (this.trackAsyncOperations) {
@@ -110,11 +110,13 @@ class AsyncTracker {
     //
     awaitCurrentAsyncOperations() {
     
-        this.trackAsyncOperations = false;
+        // At this point we stop tracking new async operations.
+        // We don't care about any async op started after this point.
+        this.trackAsyncOperations = false; 
 
         let promise;
 
-        fs.writeSync(1, `>>>>>>> Cell has ended, async operation tracking has been disabled, currently have ${this.asyncOperations.size} async ops in progress.\n`);
+        fs.writeSync(1, `>>>>>>> Code section has ended, async operation tracking has been disabled, currently have ${this.asyncOperations.size} async ops in progress.\n`);
         if (this.asyncOperations.size > 0) {
             fs.writeSync(1, `Waiting for operations to complete, creating a promise.\n`);
             this.dumpOperations();

@@ -17,8 +17,8 @@ async function main() {
 
     // ---- Async operations created from here on are tracked.
 
-    fs.writeSync(1, `** 11 **\n`);
-    
+    fs.writeSync(1, `** 11 **\n`); // Have to use this instead of console.log so that I don't cause extra async operations.
+     
     // The simplest async operation that causes this problem.
     // If you comment out this code the program completes normally.
     await Promise.resolve(); 
