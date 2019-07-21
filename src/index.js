@@ -2,11 +2,11 @@ const { AsyncTracker } = require("./async-tracker");
 const fs = require("fs");
 
 process.on('uncaughtException', (err) => {
-    fs.writeSync(1, 'uncaughtException');
+    fs.writeSync(1, '************* uncaughtException');
 });
 
 process.on('unhandledRejection', (reason, promise) => {
-    fs.writeSync(1, 'unhandledRejection');
+    fs.writeSync(1, '************* unhandledRejection');
 });
 
 async function main() {
