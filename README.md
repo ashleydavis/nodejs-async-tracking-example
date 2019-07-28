@@ -28,9 +28,11 @@ If you can help please email me on [ashley@codecapers.com.au](mailto:ashley@code
 
 ## Operating system / Node.js version
 
-This code has been tested on Windows 10 with Node.js versions 8.9.4, 10.15.2 and 12.6.0. It has the same behaviour on all versions tested.
+This code has been tested on Windows 10 with Node.js versions 8.9.4, 10.15.2 and 12.6.0. 
 
-This code has now been tested on MacOS v8.11.3
+This code has now been tested on MacOS v8.11.3, 10.15.0 and 12.6.0. 
+
+It has the same behaviour on all versions tested.
 
 ## Other considerations
 
