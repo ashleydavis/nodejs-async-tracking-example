@@ -30,6 +30,8 @@ If you can help please email me on [ashley@codecapers.com.au](mailto:ashley@code
 
 This code has been tested on Windows 10 with Node.js versions 8.9.4, 10.15.2 and 12.6.0. It has the same behaviour on all versions tested.
 
+This code has now been tested on MacOS v8.11.3
+
 ## Other considerations
 
 This code is compiled by Babel, I thought that could be part of the problem, but the compiled code doesn't look very different to the source code, so I don't think so. Note that I have committed the compiled JavaScript under the `dist` directory.
