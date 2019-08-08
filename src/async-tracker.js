@@ -1,6 +1,25 @@
 const async_hooks = require("async_hooks");
 const fs = require("fs");
 
+process.on('exit', code => { 
+    console.log(`$$ Process exited with code ${code}.`);
+});
+
+process.on('uncaughtException', (err) => { 
+    console.error('$$ uncaughtException');
+    console.error(err && err.stack || err);
+});
+
+process.on('unhandledRejection', (reason, promise) => { 
+    console.error('$$ unhandledRejection');
+    console.error('Unhandled Rejection at: ', promise, ', reason: ', reason);
+});
+
+process.on('multipleResolves', (type, promise, reason) => { 
+    console.error('$$ multipleResolves');
+    console.error(type, promise, reason);
+});
+
 //
 // Helper for tracking asyncronous operations.
 //
