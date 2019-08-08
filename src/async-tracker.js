@@ -103,13 +103,13 @@ class AsyncTracker {
             this.openAsyncOperations.delete(asyncId);
 
             fs.writeSync(1, `%% removed async operation #${asyncId}\n`);
-            this.dumpOperations();            
+            this.dumpOperations();
     
-            if (this.asyncOperationsAwaitResolver && 
+            if (this.callback && 
                 this.asyncOperations.size <= 0) {
                 fs.writeSync(1, `%% resolving the async op promise!\n`);
-                this.asyncOperationsAwaitResolver();
-                this.asyncOperationsAwaitResolver = undefined;
+                this.callback();
+                this.callback = undefined;
             }
         }
     }
@@ -120,36 +120,31 @@ class AsyncTracker {
     enableTracking() {
         fs.writeSync(1, `!! Enabled async tracking.\n`);
         this.asyncOperations.clear();
-        this.asyncOperationsAwaitResolver = undefined;
+        this.callback = undefined;
         this.trackAsyncOperations = true;    
     }
 
     //
     // Wait until all current async operations have completed.
     //
-    awaitCurrentAsyncOperations() {
+    awaitCurrentAsyncOperations(callback) {
     
         // At this point we stop tracking new async operations.
         // We don't care about any async op started after this point.
         this.trackAsyncOperations = false; 
-
-        let promise;
+        this.callback = callback;
 
         fs.writeSync(1, `>>>>>>> Code section has ended, async operation tracking has been disabled, currently have ${this.asyncOperations.size} async ops in progress.\n`);
         if (this.asyncOperations.size > 0) {
             fs.writeSync(1, `Waiting for operations to complete, creating a promise.\n`);
             this.dumpOperations();
-            promise = new Promise(resolve => {
-                this.asyncOperationsAwaitResolver = resolve; // Extract the resolve function so we can call it when all current async operations have completed.
-            });
+            this.callback = callback;
         }
         else {
             this.asyncOperationsAwaitResolver = undefined;
             fs.writeSync(1, `No async ops in progress, no need to wait.\n`);
-            promise = Promise.resolve();
+            callback();
         }
-
-        return promise;
     }
 
     dumpOperations() {

@@ -36,7 +36,9 @@ async function main() {
 
     // ---  Now we disable tracking of async operations, then wait for all current operations to complete before continuing.
 
-    await asyncTracker.awaitCurrentAsyncOperations(); // Disable async tracking and wait.
+    asyncTracker.awaitCurrentAsyncOperations(() => { // Disable async tracking and trigger callback later.
+        console.log("All async operations have completed.");
+    }); 
 
     fs.writeSync(1, `** 33 **\n`);
 }
